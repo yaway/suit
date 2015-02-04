@@ -1,0 +1,21 @@
+// card
+
+$card-bg: #fff
+
+.card
+  background-color: $card-bg
+  margin-bottom: $margin-base-vertical
+  .card-info
+    +size
+    margin-top: 0
+    margin-bottom: 0
+  .card-figure
+    .img
+      width: 100%
+    .caption
+      +size
+  
+.card-listed
+  +display-flex
+  .card-info
+    +flex(1)

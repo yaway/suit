@@ -1,0 +1,92 @@
+// 
+// Typography
+// --------------------------------------------------
+
+// Headings
+// -------------------
+
+@for $i from 1 through 6
+  .h#{$i}, h#{$i}
+    font-family: $heading-font-family
+    font-weight: $heading-font-weight
+    line-height: $heading-line-height
+    margin-bottom: $padding-base-vertical
+    margin-top: $padding-base-vertical / 2
+
+.h1, h1
+  font-size: $font-size-h1
+.h2, h2
+  font-size: $font-size-h2
+.h3, h3
+  font-size: $font-size-h3
+.h4, h4
+  font-size: $font-size-h4
+.h5, h5
+  font-size: $font-size-h5
+.h6, h6
+  font-size: $font-size-h6
+
+.h-l
+  font-size: $font-size-h-l
+
+// Font families
+.text-monospace
+  font-family: $font-family-monospace
+
+// A
+// -------------------
+a, .a
+  cursor: pointer
+
+// P
+// -------------------
+p, .p
+  font-size: $font-size-base
+.btn-block + p
+  margin-top: $margin-base-vertical
+
+// Transformation
+// -------------------
+.text-lowercase
+  text-transform: lowercase
+.text-uppercase
+  text-transform: uppercase
+.text-lowercase
+  text-transform: captitalize
+
+
+// Alignment
+// -------------------
+
+.text-left
+  text-align: left
+.text-right
+  text-align: right
+.text-center
+  text-align: center
+
+// Contextual colors
+// -------------------
+.text-primary
+  color: $brand-primary
+.text-secondary
+  color: $brand-secondary
+.em, em
+  color: $text-color-em
+.strong, strong, b
+  font-weight: bold
+
+.code, code
+  color: $code-color
+  background-color: $code-bg
+  border-radius: $border-radius-base
+  border-radius: $border-radius-base
+  padding: $padding-xs-vertical $padding-xs-horizontal
+  font-size: 90%
+  font-family: $font-family-monospace
+
+.text-control
+  +size($padding-base-vertical + 1, 0)
+  +ellipsis
+.text-inline
+  +ellipsis

@@ -1,0 +1,195 @@
+// 
+// Mixins
+// --------------------------------------------------
+
+=clearfix
+  +pie-clearfix
+
+// flex minxins from https://github.com/mastastealth/sass-flex-mixin/blob/master/flex.scss
+=display-flex
+  display: -webkit-box
+  display: -webkit-flex
+  display: -moz-flex
+  display: -ms-flexbox
+  display: flex
+
+=flex($fg: 1, $fs: null, $fb: null)
+    
+  // Set a variable to be used by box-flex properties
+  $fg-boxflex: $fg
+
+  // Box-Flex only supports a flex-grow value so let's grab the
+  // first item in the list and just return that.
+  @if type-of($fg) == 'list'
+    $fg-boxflex: nth($fg, 1)
+
+  -webkit-box-flex: $fg-boxflex
+  -webkit-flex: $fg $fs $fb
+  -moz-box-flex: $fg-boxflex
+  -moz-flex: $fg $fs $fb
+  -ms-flex: $fg $fs $fb
+  flex: $fg $fs $fb
+
+=align-items($value: stretch) 
+  @if $value == flex-start 
+    -webkit-box-align: start
+    -ms-flex-align: start
+  @else if $value == flex-end 
+    -webkit-box-align: end
+    -ms-flex-align: end
+  @else 
+    -webkit-box-align: $value
+    -ms-flex-align: $value
+  -webkit-align-items: $value
+  -moz-align-items: $value
+  align-items: $value
+
+=justify-content($value: flex-start)
+  @if $value == flex-start
+    -webkit-box-pack: start
+    -ms-flex-pack: start
+  @else if $value == flex-end
+    -webkit-box-pack: end
+  @else if $value == space-between
+    -webkit-box-pack: justify
+    -ms-flex-pack: justify
+  @else if $value == space-around
+    -ms-flex-pack: distribute 
+  @else
+    -webkit-box-pack: $value
+    -ms-flex-pack: $value
+
+  -webkit-justify-content: $value
+  -moz-justify-content: $value
+  justify-content: $value
+
+
+=tab-focus
+  // Default
+  outline: thin dotted
+  // WebKit
+  outline: 5px auto -webkit-focus-ring-color
+  outline-offset: -2px
+
+
+=text-hidden
+  text-indent: 100%
+  white-space: nowrap
+  overflow: hidden
+
+
+=pos-fixed($pos:bottom)
+  position: fixed
+  @if $pos == bottom
+    left: 0
+    right: 0
+    bottom: 0
+  @else if $pos == top
+    left: 0
+    right: 0
+    top: 0
+  @else if $pos == top-left
+    top: 0
+    left: 0
+  @else if $pos == top-right
+    top: 0
+    right: 0
+  @else if $pos == bottom-left
+    bottom: 0
+    left: 0
+  @else if $pos == bottom-right
+    bottom: 0
+    right: 0
+  @else if $pos == cover
+    left: 0
+    right: 0
+    bottom: 0
+    top: 0
+=pos-absolute($pos:bottom)
+  position: absolute
+  @if $pos == bottom
+    bottom: 0
+    left: 0
+    right: 0
+  @else if $pos == top
+    top: 0
+    left: 0
+    right: 0
+  @else if $pos == top-left
+    top: 0
+    left: 0
+  @else if $pos == top-right
+    top: 0
+    right: 0
+  @else if $pos == bottom-left
+    bottom: 0
+    left: 0
+  @else if $pos == bottom-right
+    bottom: 0
+    right: 0
+  @else if $pos == cover
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+
+
+=center-block
+  display: block
+  margin-left: auto
+  margin-right: auto
+
+=axis-block
+  +pos-absolute(cover)
+  margin: auto
+
+
+=variant($color:$text-color, $bg:transparent, $border:transparent, $disable:false)
+  color: $color
+  background-color: $bg
+  border-color: $border
+  &:hover,
+  &:focus,
+  &:active
+    color: $color
+    background-color: $bg
+    border-color: $border
+  // &:hover,
+  &:active
+    @if $disable == false
+      background-color: darken($bg, 7%)
+      border-color: darken($border, 7%)
+
+
+=size($padding-vertical:$padding-base-vertical , $padding-horizontal:$padding-base-horizontal, $font-size:inherit, $line-height:inherit, $border-radius:0)
+  padding: $padding-vertical $padding-horizontal
+  font-size: $font-size
+  line-height: $line-height
+  border-radius: $border-radius
+
+
+=grid($column-count: $grid-column-count, $gutter: $grid-gutter-base, $suffix: null)
+  .row#{$suffix}
+    margin-left: $gutter / -2
+    margin-right: $gutter / -2
+    +clearfix
+    @for $i from 1 through $column-count
+      .col-#{$i}
+        width: $i / $column-count * 100%
+        padding: 0 ($gutter / 2)
+        float: left
+      .col-offset-#{$i}
+        margin-left: $i / $column-count * 100%
+
+=transi($speed:base,$prop:all)
+  $duration: 0.6s !default
+  @if $speed == now
+    +transition(none)
+  @else
+    @if $speed == base
+      $duration: 0.8s
+    @else if $speed == fast
+      $duration: 0.4s
+    @else if $speed == slow
+      $duration: 1.2s
+    +transition($prop $duration)

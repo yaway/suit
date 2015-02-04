@@ -1,0 +1,55 @@
+// wrapper
+
+.wrapper
+  padding: $padding-wrapper-base-vertical $padding-wrapper-base-horizontal
+.wrapper-l
+  padding: $padding-wrapper-l-vertical $padding-wrapper-l-horizontal
+.wrapper-s
+  padding: $padding-s-vertical $padding-s-horizontal
+
+.wrapper-responsive
+  +center-block
+  max-width: $responsive-width-base
+
+.wrapper-bordered
+  border-radius: $border-radius-base
+  border: $border-base
+
+.wrapper-fixed-top
+  +pos-fixed(top)
+  border-bottom: $border-base
+  z-index: 10
+.wrapper-fixed-bottom
+  +pos-fixed(bottom)
+  border-top: $border-base
+  background-color: rgba(255,255,255,0.9)
+  z-index: 10
+
+.wrapper-fixed-cover
+  // &.out
+  //   +transi(fast)
+  //   +transparent 
+  // &.in
+  //   +transi
+  //   +opaque
+  // background-color: rgba(0,0,0,0.7)
+  &.out
+    display: none
+  +pos-fixed(cover)
+  z-index: 20
+
+.wrapper-center-unknown
+  text-align: center
+  &:before
+    content: ''
+    height: 100%
+    vertical-align: middle
+    display: inline-block
+  >.inner
+    vertical-align: middle
+    display: inline-block
+
+.has-wrapper-fixed-top
+  padding-top: $height-of-btn-wrapper
+.has-wrapper-fixed-bottom
+  padding-bottom: $height-of-btn-wrapper

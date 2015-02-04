@@ -1,0 +1,13 @@
+.input
+  +size($border-radius:$border-radius-base)
+  display: block
+  width: 100%
+  height: $input-height-base
+  background-image: none // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/
+  color: $input-color
+  border: 1px solid $input-border
+
+.input-block + .input-block
+  margin-top: $margin-s-vertical
+.input-block + .btn-block
+  margin-top: $margin-base-vertical
